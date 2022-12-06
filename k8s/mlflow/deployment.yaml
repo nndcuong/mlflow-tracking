@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mlflow-tracking
+  namespace: mlflow-tracking
+  labels:
+    app: mlflow-tracking
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mlflow-tracking
+  template:
+    metadata:
+      labels:
+        app: mlflow-tracking
+    spec:
+      containers:
+      - name: mlflow-tracking
+        image: nndcuong/mlflow-tracking:latest
+        ports:
+          - containerPort: 80
+        env:
+          - name: MLFLOW_BACKEND_STORE_PATH
+            value: postgresql://pg:pg@postgres.mlflow-tracking:5432/pg
+          - name: PORT
+            value: "80"
+          - name: MLFLOW_TRACKING_USERNAME
+            value: emandai
+          - name: MLFLOW_TRACKING_PASSWORD
+            value: emandai
+        volumeMounts:
+            - mountPath: /mnt/data
+              name: registry
+      volumes:
+        - name: registry
+          persistentVolumeClaim:
+            claimName: mlflow-registry-pvc

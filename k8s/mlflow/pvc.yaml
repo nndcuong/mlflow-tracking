@@ -1,0 +1,31 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: mlflow-registry-pv  # Sets PV's name
+  namespace: mlflow-tracking
+  labels:
+    type: local  # Sets PV's type to local
+    app: mlflow-registry
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 5Gi # Sets PV Volume
+  accessModes:
+    - ReadWriteMany
+  # hostPath:
+  #   path: "/home/cuongnguyen/mlflow-tracking/k8s/mlflow/data"
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: mlflow-registry-pvc  # Sets name of PVC
+  namespace: mlflow-tracking
+  labels:
+    app: mlflow-registry
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteMany  # Sets read and write access
+  resources:
+    requests:
+      storage: 5Gi  # Sets volume size
