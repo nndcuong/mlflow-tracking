@@ -1,20 +1,3 @@
-kind: PersistentVolume
-apiVersion: v1
-metadata:
-  name: postgres-pv  # Sets PV's name
-  namespace: mlflow-tracking
-  labels:
-    type: local  # Sets PV's type to local
-    app: postgres
-spec:
-  storageClassName: manual
-  capacity:
-    storage: 5Gi # Sets PV Volume
-  accessModes:
-    - ReadWriteMany
-  # hostPath:
-  #   path: "/home/cuongnguyen/mlflow-tracking/k8s/postgres/data"
----
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
