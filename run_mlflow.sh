@@ -1,0 +1,1 @@
+docker run --rm -it --env-file .env -p 8001:8001 --name mlflow -v /Users/emandai/Desktop/VNLP/mlflow/mlflow-tracking/data:/root/data mlflow-tracking
