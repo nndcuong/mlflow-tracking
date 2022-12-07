@@ -1,14 +1,13 @@
-kind: PersistentVolumeClaim
 apiVersion: v1
+kind: PersistentVolumeClaim
 metadata:
   name: postgres-pvc  # Sets name of PVC
   namespace: mlflow-tracking
   labels:
     app: postgres
 spec:
-  storageClassName: manual
   accessModes:
-    - ReadWriteMany  # Sets read and write access
+    - ReadWriteOnce
   resources:
     requests:
-      storage: 5Gi  # Sets volume size
+      storage: 4Gi
