@@ -4,6 +4,8 @@
 set -e
 # set -x
 
+mlflow db upgrade ${MLFLOW_BACKEND_STORE_PATH}
+
 mlflow server \
   --backend-store-uri=${MLFLOW_BACKEND_STORE_PATH} \
   --artifacts-destination=${MLFLOW_ARTIFACT_PATH} \

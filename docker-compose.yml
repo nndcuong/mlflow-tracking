@@ -2,6 +2,7 @@ version: "3"
 
 services:
   mlflow-tracking:
+    restart: always
     container_name: app
     build:
       context: .
@@ -15,7 +16,7 @@ services:
       - MLFLOW_TRACKING_USERNAME=cuong
       - MLFLOW_TRACKING_PASSWORD=cuong
     volumes:
-      - /home/cuongnguyen/mlflow-tracking/data/artifacts:/home/cuongnguyen/mlflow-tracking/data/artifacts
+      - /mnt/data/mlflow/data/artifacts:/home/cuongnguyen/mlflow-tracking/data/artifacts
     depends_on:
       - db
     networks:
@@ -23,6 +24,7 @@ services:
 
   db:
     container_name: db
+    restart: always
     image: postgres
     expose:
       - 5432
@@ -31,7 +33,7 @@ services:
       - POSTGRES_USER=pg
       - POSTGRES_PASSWORD=pg
     volumes:
-      - /home/cuongnguyen/mlflow-tracking/data/db:/var/lib/postgresql/data
+      - /mnt/data/mlflow/data/db:/var/lib/postgresql/data
     networks:
       - mlflow-network
 
