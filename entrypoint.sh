@@ -11,4 +11,6 @@ mlflow server \
   --artifacts-destination=${MLFLOW_ARTIFACT_PATH} \
   --serve-artifacts \
   --host 0.0.0.0 \
-  --port ${PORT}
+  --port ${PORT} \
+  --workers 8 \
+  --gunicorn-opts="--timeout=90"
