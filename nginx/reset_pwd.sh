@@ -1,1 +1,1 @@
-htpasswd -c .htpasswd cuong
+htpasswd -c .htpasswd nhung

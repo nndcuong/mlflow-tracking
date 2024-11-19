@@ -13,4 +13,4 @@ mlflow server \
   --host 0.0.0.0 \
   --port ${PORT} \
   --workers 8 \
-  --gunicorn-opts="--timeout=90"
+  --gunicorn-opts="--timeout=10000"
